@@ -115,9 +115,16 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
   };
 
   return (
-    <button onClick={isRecording ? stopRecording : startRecording}>
-      {isRecording ? "Stop Recording" : "Start Recording"}
-    </button>
+    <div className="text-center">
+      <button
+        onClick={isRecording ? stopRecording : startRecording}
+        className={`btn btn-lg ${
+          isRecording ? "btn-error" : "btn-secondary"
+        } text-primary`}
+      >
+        {isRecording ? "Stop Recording" : "Start Recording"}
+      </button>
+    </div>
   );
 };
 

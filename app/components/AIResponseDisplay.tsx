@@ -1,14 +1,18 @@
-import React from 'react';
+import React from "react";
 
 interface AIResponseDisplayProps {
   response: string;
 }
 
-export default function AIResponseDisplay({ response }: AIResponseDisplayProps) {
+export default function AIResponseDisplay({
+  response,
+}: AIResponseDisplayProps) {
   return (
-    <div className="mt-8 p-4 bg-blue-100 rounded-lg max-w-lg w-full">
-      <h2 className="text-xl font-semibold mb-2">AI Response:</h2>
-      <p>{response || "Waiting for AI response..."}</p>
+    <div className="card bg-secondary text-primary">
+      <div className="card-body">
+        <h2 className="card-title">AI Response:</h2>
+        <p className="text-lg">{response || "Waiting for AI response..."}</p>
+      </div>
     </div>
   );
 }

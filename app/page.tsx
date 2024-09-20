@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import VoiceRecorder from "./components/VoiceRecorder";
 import TranscriptionDisplay from "./components/TranscriptionDisplay";
 import AIResponseDisplay from "./components/AIResponseDisplay";
@@ -39,11 +41,19 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-8">AI Voice Command</h1>
-      <VoiceRecorder onRecordingComplete={handleRecordingComplete} />
-      <TranscriptionDisplay transcription={transcription} />
-      <AIResponseDisplay response={aiResponse} />
-    </main>
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-primary to-accent">
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center">
+        <div className="max-w-2xl w-full space-y-8">
+          <h1 className="text-5xl font-bold text-center text-secondary">
+            AI Voice Command
+          </h1>
+          <VoiceRecorder onRecordingComplete={handleRecordingComplete} />
+          <TranscriptionDisplay transcription={transcription} />
+          <AIResponseDisplay response={aiResponse} />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }

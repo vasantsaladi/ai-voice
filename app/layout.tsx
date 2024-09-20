@@ -7,8 +7,12 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className="bg-gray-50">{children}</body>
+    <html lang="en" data-theme="light">
+      <body className="bg-base-200 min-h-screen flex flex-col">
+        <main className="container mx-auto px-4 py-8 flex-grow">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }

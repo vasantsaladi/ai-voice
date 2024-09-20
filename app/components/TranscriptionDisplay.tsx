@@ -6,9 +6,11 @@ interface TranscriptionDisplayProps {
 
 export default function TranscriptionDisplay({ transcription }: TranscriptionDisplayProps) {
   return (
-    <div className="mt-8 p-4 bg-gray-100 rounded-lg max-w-lg w-full">
-      <h2 className="text-xl font-semibold mb-2">Transcription:</h2>
-      <p>{transcription || "No transcription yet"}</p>
+    <div className="card bg-base-100 shadow-xl">
+      <div className="card-body">
+        <h2 className="card-title text-primary">Transcription:</h2>
+        <p className="text-lg text-neutral">{transcription || "No transcription yet"}</p>
+      </div>
     </div>
   );
 }

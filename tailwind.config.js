@@ -15,8 +15,21 @@ module.exports = {
     },
   },
   plugins: [require("daisyui")],
-  // Add daisyUI config (optional)
   daisyui: {
-    themes: ["light", "dark"],
+    themes: [
+      {
+        mytheme: {
+          primary: "#1E40AF", // Deep blue
+          secondary: "#FFD700", // Gold
+          accent: "#3ABFF8", // Light blue
+          neutral: "#3D4451",
+          "base-100": "#FFFFFF",
+          info: "#3ABFF8",
+          success: "#36D399",
+          warning: "#FBBD23",
+          error: "#F87272",
+        },
+      },
+    ],
   },
 };
