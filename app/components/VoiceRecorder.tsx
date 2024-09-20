@@ -13,6 +13,7 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
+  const chunksRef = useRef<Float32Array[]>([]);
 
   const startRecording = async () => {
     try {
@@ -30,12 +31,11 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
       source.connect(processor);
       processor.connect(audioContextRef.current.destination);
 
-      const chunks: Float32Array[] = [];
+      chunksRef.current = [];
 
       processor.onaudioprocess = (e) => {
         const input = e.inputBuffer.getChannelData(0);
-        const buffer = new Float32Array(input);
-        chunks.push(buffer);
+        chunksRef.current.push(new Float32Array(input));
       };
 
       setIsRecording(true);
@@ -46,7 +46,18 @@ const VoiceRecorder: React.FC<VoiceRecorderProps> = ({
           processor.disconnect();
           source.disconnect();
 
-          const audioData = chunks.flat();
+          // Concatenate all chunks into a single Float32Array
+          const totalLength = chunksRef.current.reduce(
+            (acc, chunk) => acc + chunk.length,
+            0
+          );
+          const audioData = new Float32Array(totalLength);
+          let offset = 0;
+          for (const chunk of chunksRef.current) {
+            audioData.set(chunk, offset);
+            offset += chunk.length;
+          }
+
           const wavBlob = createWavBlob(
             audioData,
             audioContextRef.current!.sampleRate
