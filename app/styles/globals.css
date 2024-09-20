@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Add any global styles here */
+body {
+  @apply antialiased text-gray-900;
+}
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -17,6 +22,7 @@
 }
 
 body {
+  @apply antialiased text-gray-900;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
